@@ -1,0 +1,166 @@
+body{
+    background-color: #DCEDC8;
+    font-family: "Open Sans", "Arial", sans-serif;
+}
+#main_table {
+    border-spacing: 10px;
+    width: 100%;
+}
+.vertical-elements{
+
+}
+#head-element{
+    font-size: 25px;
+    background-color: #689F38;
+}
+
+#left-header {
+    width: 50%;
+    text-align: left;
+}
+
+#right-header {
+    width: 50%;
+    text-align: right;
+}
+
+#middle-headers{
+    text-align: center;
+    background-color: #8BC34A;
+    font-size: 20px;
+}
+
+#middle-content{
+    background-color: white;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#input-grid {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+
+.input-grid-label {
+    width: 12%;
+    font-weight: bold;
+}
+
+#x-textinput {
+    width: 75%;
+    height: 20px;
+    margin: 2% 0;
+}
+
+#r-textinput {
+    width: 75%;
+    height: 20px;
+    margin: 2% 0;
+}
+
+.text-error {
+    border: 1px solid #ff0000;
+}
+
+.box-error {
+    color: #ff0000;
+}
+
+.text-error::placeholder {
+    color: #ff0000;
+}
+
+.form-subtext {
+    padding-bottom: 2%;
+    font-size: 14px;
+}
+
+.center-labeled {
+    display: inline-block;
+    position: relative;
+    margin: 0 1% 5%;
+    font-size: 14px;
+}
+
+.center-labeled label {
+    position: absolute;
+    top: 18px;
+    left: 6px;
+}
+
+.center-labeled .negative-labled {
+    left: 7px;
+}
+
+.center-labeled .add-labeled {
+    left: 7px;
+}
+
+.buttons {
+    margin-top: 3%;
+}
+
+.button {
+    height: 27px;
+    width: 70px;
+    color: #ffffff;
+    background-color: #8BC34A;
+    border: none;
+}
+
+.button:hover {
+    background-color: #CDDC39;
+}
+
+#result-table {
+    width: 100%;
+    background-color: white;
+}
+.table-collumn {
+    width: 16.6%;
+}
+
+#header-row {
+    background-color: #8BC34A;
+    text-align: center;
+}
+
+#result-table tr:nth-child(2n+3) {
+    background-color: #8FCF4F;
+}
+#result-table tr:nth-child(2n+2) {
+    background-color: #DCEDC8;
+}
+
+#result-table tr:nth-child(2n+2):hover {
+    background-color: #BDBDBD;
+}
+#result-table tr:nth-child(2n+3):hover {
+    background-color: #757575;
+}
+
+.graph_canvas{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+}
+
+.result-graph{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+}
+
+#graph_td{
+    position: relative;
+    height: 220px;
+}

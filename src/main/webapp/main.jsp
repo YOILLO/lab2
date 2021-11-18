@@ -16,7 +16,7 @@
                     Кальвияйнен Ярослав, P3232
                 </td>
                 <td id="right-header">
-                    Вариант 32006
+                    Вариант 32167
                 </td>
             </tr>
             <tr class="vertical-elements" id="middle-headers">

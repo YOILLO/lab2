@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ControllerServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NumberFormatException {
         if(req.getParameter("xval") != null && req.getParameter("yval") != null
                 && req.getParameter("rval") != null) {
             getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);

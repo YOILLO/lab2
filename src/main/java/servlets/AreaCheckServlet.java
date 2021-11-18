@@ -12,6 +12,7 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.DoubleStream;
 
 public class AreaCheckServlet extends HttpServlet {
@@ -19,12 +20,13 @@ public class AreaCheckServlet extends HttpServlet {
     private double y_range[] = {-4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0};
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NumberFormatException, ArithmeticException {
         long startTime = System.nanoTime();
-        String x = req.getParameter("xval").trim();
+        String x = req.getParameter("xval").trim().replace(",", ".");
         String y = req.getParameter("yval");
-        String r = req.getParameter("rval").trim();
-
+        String r = req.getParameter("rval").trim().replace(",", ".");
+        int a = 0;
+        int b = 10/a;
         if (validateX(x) && validateY(y) && validateR(r)){
 
             double xValue = Double.parseDouble(x);
@@ -37,12 +39,9 @@ public class AreaCheckServlet extends HttpServlet {
 
             OffsetDateTime currentTimeObject = OffsetDateTime.now(ZoneOffset.UTC);
             String currentTime;
-            try {
-                currentTimeObject = currentTimeObject.minusMinutes(Long.parseLong(req.getParameter("timezone")));
-                currentTime = currentTimeObject.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-            } catch (Exception exception) {
-                currentTime = "А где я...";
-            }
+
+            currentTimeObject = currentTimeObject.minusMinutes(Long.parseLong(req.getParameter("timezone")));
+            currentTime = currentTimeObject.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
             String executionTime = String.valueOf(System.nanoTime() - startTime);
 
@@ -51,35 +50,22 @@ public class AreaCheckServlet extends HttpServlet {
             raws.getPoints().add(new Point(xValue, yValue, rValue, currentTime, executionTime, isInside));
             req.getSession().setAttribute("table", raws);
         }
-
         getServletContext().getRequestDispatcher("/main.jsp").forward(req, resp);
     }
 
-    private boolean validateX(String x){
-        try{
-            double double_x = Double.parseDouble(x);
-            return -3.0 <= double_x && double_x <= 3.0;
-        } catch (NumberFormatException e){
-            return false;
-        }
+    private boolean validateX(String x) throws NumberFormatException{
+        double double_x = Double.parseDouble(x);
+        return -3.0 <= double_x && double_x <= 3.0;
     }
 
-    private boolean validateY(String y) throws ServletException{
-        try{
-            double double_y = Double.parseDouble(y);
-            return DoubleStream.of(y_range).anyMatch(x -> x == double_y);
-        } catch (NumberFormatException e){
-            return false;
-        }
+    private boolean validateY(String y) throws NumberFormatException{
+        double double_y = Double.parseDouble(y);
+        return DoubleStream.of(y_range).anyMatch(x -> x == double_y);
     }
 
-    private boolean validateR(String r){
-        try{
-            double double_r = Double.parseDouble(r);
-            return 2.0 <= double_r && double_r <= 5.0;
-        } catch (NumberFormatException e){
-            return false;
-        }
+    private boolean validateR(String r) throws NumberFormatException{
+        double double_r = Double.parseDouble(r);
+        return 2.0 <= double_r && double_r <= 5.0;
     }
 
     private boolean insideCircle(double x, double y, double r){

@@ -158,7 +158,7 @@ $(function(){
 			return;
 		}
 		
-		var x = $("#x-textinput").val();
+		var x = $("#x-textinput").val().replace(",",".");
 		var y = $('input[name=yval]:checked').val();
 		$.ajax({
 			url: "/lab2",
@@ -221,7 +221,7 @@ $(function(){
 	function newR(event){
 		if (!validate_R())
 			return;
-		r_val = $('#r-textinput').val();
+		r_val = $("#r-textinput").val().replace(",",".");
 	}
 
 	$('#r-textinput').on("change", newR);
